@@ -13,7 +13,7 @@ import modele.GestionnaireFilms;
 
 
 
-public class Controleur implements ListSelectionListener/*, ActionListener*/ {
+public class Controleur implements ListSelectionListene {
 
     GestionnaireFilms g;
     Vue v;
