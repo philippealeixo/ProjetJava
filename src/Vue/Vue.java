@@ -5,12 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 import Controleur.Controleur;
 import modele.GestionnaireFilms;
@@ -81,8 +76,9 @@ public class Vue extends JPanel {
         this.add(droite);
 
 
-        ajouter.setEnabled(false);
+        ajouter.setEnabled(true);
         supprimer.setEnabled(false);
+        ajouter.setActionCommand("ajouter");
     }
 
 
@@ -90,7 +86,7 @@ public class Vue extends JPanel {
 
     public void setControler(Controleur c) {
         liste.addListSelectionListener(c);
-      // ajouter.addActionListener(c);
+        ajouter.addActionListener(c);
        // supprimer.addActionListener(c);
 
     }
@@ -98,6 +94,7 @@ public class Vue extends JPanel {
 public void maj() {
 	//information.setText(gestion.getInfosHTML());
 
+        information.setIcon(new ImageIcon(gestion.getImage(liste.getSelectedIndex())));
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
 
 }

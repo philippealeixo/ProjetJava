@@ -1,5 +1,6 @@
 package modele;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -11,16 +12,18 @@ public class Films {
     private String titre;
     private String annee;
     private String realisateur;
-    private String genre;
+    private int duree;
     private String resume;
+    private File image;
     private int note;
 
 
-    public Films(String titre, String annee, String realisateur, String genre, int note, String resume) {
+    public Films(String titre, String annee, String realisateur, int duree, int note, File image, String resume) {
         this.titre = titre;
         this.annee = annee;
         this.realisateur = realisateur;
-        this.genre = genre;
+        this.duree = duree;
+        this.image = image;
         this.resume = resume;
         this.note = note;
     }
@@ -37,8 +40,8 @@ public class Films {
         return realisateur;
     }
 
-    public String getGenre() {
-        return genre;
+    public int getduree() {
+        return duree;
     }
 
     public int getNote() {
@@ -49,18 +52,34 @@ public class Films {
         return resume;
     }
 
+    public File getImage() { return image; }
+
     public String toString() {
-        return titre + "-" + realisateur + "-" + genre + "-" + resume;
+        return titre + "-" + realisateur + "-" + duree + "-" + resume;
     }
 
+    public String filmToBase() {
+        String s=new String();
+
+        s=s+this.titre+"/-/";
+        s=s+this.annee+"/-/";
+        s=s+this.realisateur+"/-/";
+        s=s+this.duree+"/-/";
+        s=s+this.note+"/-/";
+        s=s+this.image+"/-/";
+        s=s+this.resume+ System.getProperty("line.separator");
+
+        return s;
+    }
 
     public String getInfosHTML() {
         String s = new String();
 
+
             s += "<html>Titre : " + this.titre + "<br/>";
             s += "<br/>Premiere Sortie : " + this.annee + "<br/>";
             s += "Realisateur : " + this.realisateur + "<br/>";
-            s += "Genre : " + this.genre + "<br/>";
+            s += "Duree : " + this.duree + " min<br/>";
             s += "Note : " + this.note +"<br/>";
             s += "Resume : <br/>" + this.resume + "<br/></html>";
 

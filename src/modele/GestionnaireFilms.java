@@ -2,10 +2,7 @@ package modele;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +34,7 @@ public class GestionnaireFilms {
     public Films creerFilms(String ligne) {
 
         String fichier[] = ligne.split("/-/");
-        return new Films(fichier[0], fichier[1], fichier[2], fichier[3], Integer.parseInt(fichier[4]),fichier[5]);
+        return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]);
 
     }
 
@@ -56,6 +53,26 @@ public class GestionnaireFilms {
     public String getInfosHTML(int index) {
         return film.get(index).getInfosHTML();
 
+    }
+
+    public String getImage(int index){
+        return  film.get(index).getImage().getPath();
+    }
+
+    public void ajoutDansBase(String filename) {
+        try {
+            PrintWriter sortie= new PrintWriter(new BufferedWriter(new java.io.FileWriter(filename)));
+            for(int i=0;i<this.film.size();i++) {
+                sortie.write(this.film.get(i).filmToBase());
+            }
+            sortie.close();
+        }
+        catch(FileNotFoundException e) {
+            System.out.println("Fichier non trouvé");
+        }
+        catch(IOException io) {
+            System.out.println("Ecriture du fichier impossible...");
+        }
     }
 /*
     //main de test uniquement
