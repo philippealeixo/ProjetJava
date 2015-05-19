@@ -26,6 +26,15 @@ public class Films {
         this.note = note;
     }
 
+    public Films(String titre, String annee, String realisateur, int duree, File image, String synopsis) {
+        this.titre = titre;
+        this.annee = annee;
+        this.realisateur = realisateur;
+        this.duree = duree;
+        this.image = image;
+        this.synopsis = synopsis;
+    }
+
     public String getTitre() {
         return titre;
     }

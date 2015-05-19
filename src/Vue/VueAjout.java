@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class VueAjout extends JDialog{
 
+    public static final String VALIDATION = "Validation";
 
     private JLabel infoTitre, infoRealisateur, infoDuree, infoAnnee, infoSynopsis, infoImage, infoNote;
     private JTextField zoneTitre, zoneRealisateur, zoneAnnee, zoneDuree, zoneImage,zoneSynopsis, zoneNote ;
@@ -214,8 +215,9 @@ public class VueAjout extends JDialog{
         /*Panel Valider*/
         JPanel validation = new JPanel();
 
-        valider = new JButton("Valider");
-        valider.setEnabled(false);
+        valider = new JButton("Validation");
+        //this.valider();
+        valider.setActionCommand(VALIDATION);
         validation.add(valider);
 
         this.getContentPane().add(validation);
@@ -250,28 +252,27 @@ public class VueAjout extends JDialog{
 
 
     public void valider() {
-        if (formulaireOK()) {
-            this.valider.setEnabled(true);
-        }
-        else {
-            this.valider.setEnabled(false);
+        if (this.formulaireOK()) {
+           String[] a = this.getInfosDialogAjoutFilm();
         }
     }
 
-    protected String [] getInfosDialogAjoutLivre () {
+    public String [] getInfosDialogAjoutFilm () {
         String [] s;
         if (formulaireOK()) {
-            s = new String[5];
+            s = new String[6];
             s[0] = zoneTitre.getText();
             s[1] = zoneRealisateur.getText();
-            s[2] = choixJour.getSelectedItem() + "/" + choixMois.getSelectedIndex() + "/" + choixAnnee.getSelectedItem();
-            s[3] = zoneSynopsis.getText().replaceAll("\n|\t", "");
-            s[4] = zoneImage.getText();
+            s[2] = choixJour.getSelectedItem() + "/" + choixMois.getSelectedItem() + "/" + choixAnnee.getSelectedItem();
+            s[3] = zoneDuree.getText();
+            s[4] = zoneSynopsis.getText().replaceAll("\n|\t", "");
+            s[5] = zoneImage.getText();
             return s;
         }
         else
             return null;
     }
+
 
     public void validerRealisateur(boolean b){
         if (b){

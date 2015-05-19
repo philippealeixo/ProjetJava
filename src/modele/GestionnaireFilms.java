@@ -1,7 +1,5 @@
 package modele;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -18,8 +16,7 @@ public class GestionnaireFilms {
             BufferedReader reader = new BufferedReader(new FileReader(cheminfichier));
             String ligne; //lecture ligne par ligne
             while ((ligne = reader.readLine()) != null) {
-                //System.out.println(ligne);
-                film.add(creerFilms(ligne));
+                film.add(creerFilmsNote(ligne));
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -31,11 +28,17 @@ public class GestionnaireFilms {
     }
 
 
+    public Films creerFilmsNote(String ligne) {
+
+        String[] fichier = ligne.split("/-/");
+        System.out.println(fichier.length);
+        return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]);
+    }
+
     public Films creerFilms(String ligne) {
 
         String fichier[] = ligne.split("/-/");
-        return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]);
-
+        return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), new File(fichier[4]), fichier[5]);
     }
 
     public ArrayList<Films> getFilm() {
@@ -59,7 +62,18 @@ public class GestionnaireFilms {
         return  film.get(index).getImage().getPath();
     }
 
+    public void ajouter(Films film){
+        this.film.add(film);
+    }
+
+    public void ajouteFilm(ArrayList<Films> films){
+        for (int i=0; i<films.size(); i++){
+            this.ajouter(films.get(i));
+        }
+    }
+
     public void ajoutDansBase(String filename) {
+        this.ajouteFilm(this.film);
         try {
             PrintWriter sortie= new PrintWriter(new BufferedWriter(new java.io.FileWriter(filename)));
             for(int i=0;i<this.film.size();i++) {
@@ -73,6 +87,18 @@ public class GestionnaireFilms {
         catch(IOException io) {
             System.out.println("Ecriture du fichier impossible...");
         }
+    }
+
+    public void ajouterFilm (String titre, String realisateur, String annee, String duree, String synopsis, String image) {
+    try {
+        Films unFilm = new Films(titre, annee, realisateur, Integer.parseInt(duree), new File(image), synopsis);
+        FileWriter sortie = new FileWriter(new File("txt/oeuvres.txt"),true);
+        sortie.write(unFilm.filmToBase());
+        sortie.close();
+    }
+    catch(IOException ioe) {
+        System.err.println("IOException: " + ioe.getMessage());
+    }
     }
 /*
     //main de test uniquement

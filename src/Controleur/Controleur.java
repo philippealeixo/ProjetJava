@@ -3,6 +3,7 @@ package Controleur;
 import Vue.*;
 
 import java.awt.event.*;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.event.ListSelectionEvent;
@@ -38,8 +39,13 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 			this.vueAjout = new VueAjout(true);
 			this.vueAjout.ajouterControleur(this);
 		}
-		else if (a.getActionCommand().equals("Valider")) {
+		if (a.getActionCommand().equals(VueAjout.VALIDATION)) {
 			this.vueAjout.valider();
+			if (vueAjout.formulaireOK()) {
+				String [] data = vueAjout.getInfosDialogAjoutFilm(); // data de la JDialog
+				g.ajouterFilm(data[0],data[1],data[2],data[3],data[4],data[5]);
+				vueAjout.dispose();
+			}
 		}
 
 	}

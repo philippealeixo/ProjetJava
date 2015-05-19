@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import Controleur.Controleur;
+import modele.Films;
 import modele.GestionnaireFilms;
 
 @SuppressWarnings("serial")
@@ -121,10 +123,14 @@ public class Vue extends JPanel {
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
 }
 
-    public void majButton(){
-        noter.setEnabled((liste.getSelectedIndex()!=0));
-        supprimer.setEnabled((liste.getSelectedIndex()!=0));
-
+    protected void majJList () {
+        ArrayList<Films> listeFilms = gestion.getFilm();
+        String[] tab = new String[listeFilms.size()];
+        for (int i=0; i<listeFilms.size(); i++) {
+            tab[i] = listeFilms.get(i).getTitre();
+        }
+        liste.setListData(tab);
+        liste.setSelectedIndex(liste.getAnchorSelectionIndex());
     }
 
 
