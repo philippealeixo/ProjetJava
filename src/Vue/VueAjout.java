@@ -43,16 +43,15 @@ public class VueAjout extends JDialog{
 
         JPanel titre = new JPanel();
 
-        JLabel labelTitre = new JLabel("Titre :");
-        labelTitre.setPreferredSize(labelDimension);
-        labelTitre.setMaximumSize(labelDimension);
-        titre.add(labelTitre);
+        JLabel labeltitre = new JLabel("Titre :");
+        labeltitre.setPreferredSize(labelDimension);
+        labeltitre.setMaximumSize(labelDimension);
+        titre.add(labeltitre);
 
         zoneTitre = new JTextField();
         zoneTitre.setName("Titre");
         zoneTitre.setBackground(Color.WHITE);
         zoneTitre.setOpaque(true);
-        zoneTitre.setBorder(new EmptyBorder(5, 5, 5, 0));
         zoneTitre.setPreferredSize(textFieldDimension);
         zoneTitre.setMaximumSize(textFieldDimension);
         titre.add(zoneTitre);
@@ -67,16 +66,15 @@ public class VueAjout extends JDialog{
         /*Panel Realisateur*/
         JPanel realisateur = new JPanel();
 
-        JLabel labelRealisateur = new JLabel("Realisateur");
-        labelRealisateur.setPreferredSize(labelDimension);
-        labelRealisateur.setMaximumSize(labelDimension);
-        realisateur.add(labelRealisateur);
+        JLabel labelrealisateur = new JLabel("Realisateur :");
+        labelrealisateur.setPreferredSize(labelDimension);
+        labelrealisateur.setMaximumSize(labelDimension);
+        realisateur.add(labelrealisateur);
 
         zoneRealisateur = new JTextField();
         zoneRealisateur.setName("Realisateur");
         zoneRealisateur.setBackground(Color.WHITE);
         zoneRealisateur.setOpaque(true);
-        zoneRealisateur.setBorder(new EmptyBorder(5, 5, 5, 0));
         zoneRealisateur.setPreferredSize(textFieldDimension);
         zoneRealisateur.setMaximumSize(textFieldDimension);
         realisateur.add(zoneRealisateur);
@@ -93,7 +91,7 @@ public class VueAjout extends JDialog{
 
         JPanel annee = new JPanel();
 
-        JLabel labelannee = new JLabel("Annee");
+        JLabel labelannee = new JLabel("Annee :");
         labelannee.setPreferredSize(labelDimension);
         labelannee.setMaximumSize(labelDimension);
         annee.add(labelannee);
@@ -135,7 +133,7 @@ public class VueAjout extends JDialog{
         choixJour.setMaximumSize(comboBoxDimension);
         choixJour.setActionCommand("dateFilm");
 
-       // annee.add(labelAnnee);
+        annee.add(labelannee);
         annee.add(choixJour);
         annee.add(choixMois);
         annee.add(choixAnnee);
@@ -144,7 +142,7 @@ public class VueAjout extends JDialog{
         /*Panel Sypnosis*/
         JPanel synopsis = new JPanel();
 
-        JLabel labelsynopsis = new JLabel("Resume");
+        JLabel labelsynopsis = new JLabel("Synopsis :");
         labelsynopsis.setPreferredSize(labelDimension);
         labelsynopsis.setMaximumSize(labelDimension);
         synopsis.add(labelsynopsis);
@@ -153,7 +151,6 @@ public class VueAjout extends JDialog{
         zoneSynopsis.setName("Synopsis");
         zoneSynopsis.setBackground(Color.WHITE);
         zoneSynopsis.setOpaque(true);
-        zoneSynopsis.setBorder(new EmptyBorder(5, 5, 5, 0));
         zoneSynopsis.setPreferredSize(textFieldDimension);
         zoneSynopsis.setMaximumSize(textFieldDimension);
         synopsis.add(zoneSynopsis);
@@ -164,6 +161,29 @@ public class VueAjout extends JDialog{
         synopsis.add(infoSynopsis);
 
         this.getContentPane().add(synopsis);
+
+        /*Panel Note*/
+        JPanel note = new JPanel();
+
+        JLabel labelnote = new JLabel("Note :");
+        labelnote.setPreferredSize(labelDimension);
+        labelnote.setMaximumSize(labelDimension);
+        note.add(labelnote);
+
+        zoneNote = new JTextField();
+        zoneNote.setName("Image");
+        zoneNote.setBackground(Color.WHITE);
+        zoneNote.setOpaque(true);
+        zoneNote.setPreferredSize(textFieldDimension);
+        zoneNote.setMaximumSize(textFieldDimension);
+        note.add(zoneNote);
+
+        infoNote = new JLabel("");
+        infoNote.setPreferredSize(labelDimension);
+        infoNote.setForeground(Color.RED);
+        note.add(infoNote);
+
+        this.getContentPane().add(note);
 
         /*Panel Image*/
         JPanel image = new JPanel();
@@ -177,8 +197,8 @@ public class VueAjout extends JDialog{
         zoneImage.setName("Image");
         zoneImage.setBackground(Color.WHITE);
         zoneImage.setOpaque(true);
-        zoneSynopsis.setPreferredSize(textFieldDimension);
-        zoneSynopsis.setMaximumSize(textFieldDimension);
+        zoneImage.setPreferredSize(textFieldDimension);
+        zoneImage.setMaximumSize(textFieldDimension);
         image.add(zoneImage);
 
         infoImage = new JLabel("");
