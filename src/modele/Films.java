@@ -1,8 +1,6 @@
 package modele;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.util.Date;
 
 /**
  * Created by Philippe on 13/05/2015.
@@ -13,18 +11,18 @@ public class Films {
     private String annee;
     private String realisateur;
     private int duree;
-    private String resume;
+    private String synopsis;
     private File image;
     private int note;
 
 
-    public Films(String titre, String annee, String realisateur, int duree, int note, File image, String resume) {
+    public Films(String titre, String annee, String realisateur, int duree, int note, File image, String synopsis) {
         this.titre = titre;
         this.annee = annee;
         this.realisateur = realisateur;
         this.duree = duree;
         this.image = image;
-        this.resume = resume;
+        this.synopsis = synopsis;
         this.note = note;
     }
 
@@ -48,14 +46,14 @@ public class Films {
         return note;
     }
 
-    public String getResume() {
-        return resume;
+    public String getSynopsis() {
+        return synopsis;
     }
 
     public File getImage() { return image; }
 
     public String toString() {
-        return titre + "-" + realisateur + "-" + duree + "-" + resume;
+        return titre + "-" + realisateur + "-" + duree + "-" + synopsis;
     }
 
     public String filmToBase() {
@@ -67,7 +65,7 @@ public class Films {
         s=s+this.duree+"/-/";
         s=s+this.note+"/-/";
         s=s+this.image+"/-/";
-        s=s+this.resume+ System.getProperty("line.separator");
+        s=s+this.synopsis + System.getProperty("line.separator");
 
         return s;
     }
@@ -75,13 +73,12 @@ public class Films {
     public String getInfosHTML() {
         String s = new String();
 
-
             s += "<html>Titre : " + this.titre + "<br/>";
             s += "<br/>Premiere Sortie : " + this.annee + "<br/>";
             s += "Realisateur : " + this.realisateur + "<br/>";
             s += "Duree : " + this.duree + " min<br/>";
             s += "Note : " + this.note +"<br/>";
-            s += "Resume : <br/>" + this.resume + "<br/></html>";
+            s += "Resume : <br/>" + this.synopsis + "<br/></html>";
 
         return s;
     }

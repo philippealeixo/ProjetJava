@@ -7,36 +7,45 @@ import java.awt.*;
 
 public class VueAjout extends JDialog{
 
-    private JPanel image;
-    private JPanel genre;
+
     private JLabel infoTitre, infoRealisateur, infoDuree, infoAnnee, infoSynopsis, infoImage, infoNote;
     private JTextField zoneTitre, zoneRealisateur, zoneAnnee, zoneDuree, zoneImage,zoneSynopsis, zoneNote ;
+    private JComboBox<String> choixJour;
+    private JComboBox<String> choixMois;
+    private JComboBox<String> choixAnnee;
+    private JComboBox<String> choixNote;
     private JButton valider;
     private boolean vTitre = false, vAnnee = false, vRealisateur = false, vDuree = false, vImage = false, vSynopsis = false, vNote = false;
-    private JComboBox<String> typeListe;
-    private JComboBox<String> genreListe;
 
 
-    private final String erreur = "Tous les champs doivent être complétés.";
+
+    private final String erreur = "Tous les champs doivent etre completes.";
 
 
     public VueAjout() {
 
         this.setSize(new Dimension(800, 400));
         this.setLayout(new GridLayout(0, 1));
+        Dimension textFieldDimension = new Dimension(250, 30);
+        Dimension comboBoxDimension = new Dimension(82, 30);
+        Dimension labelDimension = new Dimension(150, 30);
 
-
-        JLabel pageTitle = new JLabel("Ajout d'un film");
-        pageTitle.setPreferredSize(new Dimension(600, 50));
-        pageTitle.setVerticalAlignment(SwingConstants.CENTER);
-        pageTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        pageTitle.setFont(new Font(" TimesRoman ", Font.BOLD, 30));
-        this.getContentPane().add(pageTitle);
+                    /*Panel Titre*/
+        JLabel pageTitre = new JLabel("Ajout d'un film");
+        this.setResizable(false); //Bloque le redimensionnement de la fenetre
+        pageTitre.setPreferredSize(labelDimension);
+        pageTitre.setMaximumSize(labelDimension);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        pageTitre.setVerticalAlignment(SwingConstants.CENTER);
+        pageTitre.setHorizontalAlignment(SwingConstants.CENTER);
+        pageTitre.setFont(new Font(" TimesRoman ", Font.BOLD, 30));
+        this.getContentPane().add(pageTitre);
 
         JPanel titre = new JPanel();
 
         JLabel labelTitre = new JLabel("Titre :");
-        labelTitre.setPreferredSize(new Dimension(150, 25));
+        labelTitre.setPreferredSize(labelDimension);
+        labelTitre.setMaximumSize(labelDimension);
         titre.add(labelTitre);
 
         zoneTitre = new JTextField();
@@ -44,20 +53,23 @@ public class VueAjout extends JDialog{
         zoneTitre.setBackground(Color.WHITE);
         zoneTitre.setOpaque(true);
         zoneTitre.setBorder(new EmptyBorder(5, 5, 5, 0));
-        zoneTitre.setPreferredSize(new Dimension(200, 25));
+        zoneTitre.setPreferredSize(textFieldDimension);
+        zoneTitre.setMaximumSize(textFieldDimension);
         titre.add(zoneTitre);
 
         infoTitre = new JLabel("");
-        infoTitre.setPreferredSize(new Dimension(250, 25));
+        infoTitre.setPreferredSize(labelDimension);
         infoTitre.setForeground(Color.RED);
         titre.add(infoTitre);
 
         this.getContentPane().add(titre);
 
+        /*Panel Realisateur*/
         JPanel realisateur = new JPanel();
 
         JLabel labelRealisateur = new JLabel("Realisateur");
-        labelRealisateur.setPreferredSize(new Dimension(150, 25));
+        labelRealisateur.setPreferredSize(labelDimension);
+        labelRealisateur.setMaximumSize(labelDimension);
         realisateur.add(labelRealisateur);
 
         zoneRealisateur = new JTextField();
@@ -65,83 +77,119 @@ public class VueAjout extends JDialog{
         zoneRealisateur.setBackground(Color.WHITE);
         zoneRealisateur.setOpaque(true);
         zoneRealisateur.setBorder(new EmptyBorder(5, 5, 5, 0));
-        zoneRealisateur.setPreferredSize(new Dimension(200, 25));
+        zoneRealisateur.setPreferredSize(textFieldDimension);
+        zoneRealisateur.setMaximumSize(textFieldDimension);
         realisateur.add(zoneRealisateur);
 
 
         infoRealisateur = new JLabel("");
-        infoRealisateur.setPreferredSize(new Dimension(250, 25));
+        infoRealisateur.setPreferredSize(labelDimension);
         infoRealisateur.setForeground(Color.RED);
         realisateur.add(infoRealisateur);
 
         this.getContentPane().add(realisateur);
 
+        /*Panel Annee*/
+
         JPanel annee = new JPanel();
 
-        JLabel labelannee = new JLabel("annee");
-        labelannee.setPreferredSize(new Dimension(150, 25));
+        JLabel labelannee = new JLabel("Annee");
+        labelannee.setPreferredSize(labelDimension);
+        labelannee.setMaximumSize(labelDimension);
         annee.add(labelannee);
+        /*ANNEE*/
+        choixAnnee = new JComboBox<String>();
+        choixAnnee.addItem("Annee");
+        int cpt = 0;
+        for (int i=1870; i<2041; i++) {
+            choixAnnee.addItem(""+i);
+            cpt++;
+            if (i == 2015)
+                choixAnnee.setSelectedIndex(cpt);
+        }
+        choixAnnee.setPreferredSize(comboBoxDimension);
+        choixAnnee.setMaximumSize(comboBoxDimension);
+        choixAnnee.setActionCommand("dateFilm");
 
-        zoneAnnee = new JTextField();
-        zoneAnnee.setName("annee");
-        zoneAnnee.setBackground(Color.WHITE);
-        zoneAnnee.setOpaque(true);
-        zoneAnnee.setBorder(new EmptyBorder(5, 5, 5, 0));
-        zoneAnnee.setPreferredSize(new Dimension(200, 25));
-        annee.add(zoneAnnee);
+        /*MOIS*/
+        choixMois = new JComboBox<String>();
+        choixMois.addItem("Mois");
+        cpt = 0;
+        for (int i=1; i<13; i++) {
+            choixMois.addItem(""+i);
+            cpt++;
+        }
+        choixMois.setPreferredSize(comboBoxDimension);
+        choixMois.setMaximumSize(comboBoxDimension);
+        choixMois.setActionCommand("dateFilm");
 
-        infoAnnee = new JLabel("");
-        infoAnnee.setPreferredSize(new Dimension(250, 25));
-        infoAnnee.setForeground(Color.RED);
-        annee.add(infoAnnee);
+        /*JOUR*/
+        choixJour = new JComboBox<String>();
+        choixJour.addItem("Jour");
+        cpt = 0;
+        for (int i=1; i<32; i++) {
+            choixJour.addItem(""+i);
+            cpt++;
+        }
+        choixJour.setPreferredSize(comboBoxDimension);
+        choixJour.setMaximumSize(comboBoxDimension);
+        choixJour.setActionCommand("dateFilm");
 
+       // annee.add(labelAnnee);
+        annee.add(choixJour);
+        annee.add(choixMois);
+        annee.add(choixAnnee);
         this.getContentPane().add(annee);
 
+        /*Panel Sypnosis*/
         JPanel synopsis = new JPanel();
 
         JLabel labelsynopsis = new JLabel("Resume");
-        labelsynopsis.setPreferredSize(new Dimension(150, 25));
+        labelsynopsis.setPreferredSize(labelDimension);
+        labelsynopsis.setMaximumSize(labelDimension);
         synopsis.add(labelsynopsis);
 
         zoneSynopsis = new JTextField();
-        zoneSynopsis.setName("Resume");
+        zoneSynopsis.setName("Synopsis");
         zoneSynopsis.setBackground(Color.WHITE);
         zoneSynopsis.setOpaque(true);
         zoneSynopsis.setBorder(new EmptyBorder(5, 5, 5, 0));
-        zoneSynopsis.setPreferredSize(new Dimension(200, 25));
+        zoneSynopsis.setPreferredSize(textFieldDimension);
+        zoneSynopsis.setMaximumSize(textFieldDimension);
         synopsis.add(zoneSynopsis);
 
         infoSynopsis = new JLabel("");
-        infoSynopsis.setPreferredSize(new Dimension(250, 25));
+        infoSynopsis.setPreferredSize(labelDimension);
         infoSynopsis.setForeground(Color.RED);
         synopsis.add(infoSynopsis);
 
         this.getContentPane().add(synopsis);
 
-        image = new JPanel();
+        /*Panel Image*/
+        JPanel image = new JPanel();
 
-        JLabel labelImage = new JLabel("Image");
-        labelImage.setPreferredSize(new Dimension(150, 25));
-        image.add(labelImage);
+        JLabel labelimage = new JLabel("Image");
+        labelimage.setPreferredSize(labelDimension);
+        labelimage.setMaximumSize(labelDimension);
+        image.add(labelimage);
 
         zoneImage = new JTextField();
         zoneImage.setName("Image");
         zoneImage.setBackground(Color.WHITE);
         zoneImage.setOpaque(true);
-        zoneImage.setBorder(new EmptyBorder(5, 5, 5, 0));
-        zoneImage.setPreferredSize(new Dimension(200, 25));
+        zoneSynopsis.setPreferredSize(textFieldDimension);
+        zoneSynopsis.setMaximumSize(textFieldDimension);
         image.add(zoneImage);
 
         infoImage = new JLabel("");
-        infoImage.setPreferredSize(new Dimension(250, 25));
+        infoImage.setPreferredSize(labelDimension);
         infoImage.setForeground(Color.RED);
         image.add(infoImage);
 
-        this.add(image);
-        image.setVisible(false);
+        this.getContentPane().add(image);
 
 
-
+        /*Panel Valider*/
         JPanel validation = new JPanel();
 
         valider = new JButton("Valider");
@@ -164,11 +212,42 @@ public class VueAjout extends JDialog{
         this.zoneAnnee.addFocusListener(controleur);
         this.zoneSynopsis.addFocusListener(controleur);
         this.zoneImage.addFocusListener(controleur);
-        this.typeListe.addItemListener(controleur);
-        this.genreListe.addItemListener(controleur);
+    }
+
+    protected boolean formulaireOK () {
+        boolean titreVide = (zoneTitre.getText().equals("") || zoneTitre.getText() == null);
+        boolean realisateurVide = (zoneRealisateur.getText().equals("") || zoneRealisateur.getText() == null);
+        boolean synopsisVide = (zoneSynopsis.getText().equals("") || zoneRealisateur.getText() == null);
+        boolean dateNonEntree = (choixJour.getSelectedIndex() == 0 || choixMois.getSelectedIndex() == 0 || choixAnnee.getSelectedIndex() == 0);
+        boolean fichierVide = zoneImage.getText() == null;
+
+        return (!titreVide && !realisateurVide && !synopsisVide && !dateNonEntree && !fichierVide);
     }
 
 
+    protected void updateEnregistrerFilmButton () {
+        if (formulaireOK()) {
+            this.valider.setEnabled(true);
+        }
+        else {
+            this.valider.setEnabled(false);
+        }
+    }
+
+    protected String [] getInfosDialogAjoutLivre () {
+        String [] s;
+        if (formulaireOK()) {
+            s = new String[5];
+            s[0] = zoneTitre.getText();
+            s[1] = zoneRealisateur.getText();
+            s[2] = choixJour.getSelectedItem() + "/" + choixMois.getSelectedIndex() + "/" + choixAnnee.getSelectedItem();
+            s[3] = zoneSynopsis.getText().replaceAll("\n|\t", "");
+            s[4] = zoneImage.getText();
+            return s;
+        }
+        else
+            return null;
+    }
 
     public void validerRealisateur(boolean b){
         if (b){

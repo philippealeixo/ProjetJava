@@ -92,7 +92,6 @@ public class Vue extends JPanel {
     }
 
 public void maj() {
-	//information.setText(gestion.getInfosHTML());
 
         information.setIcon(new ImageIcon(gestion.getImage(liste.getSelectedIndex())));
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
