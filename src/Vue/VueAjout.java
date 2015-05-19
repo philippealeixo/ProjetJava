@@ -22,14 +22,13 @@ public class VueAjout extends JDialog{
     private final String erreur = "Tous les champs doivent etre completes.";
 
 
-    public VueAjout() {
+    public VueAjout(boolean b) {
 
         this.setSize(new Dimension(500, 400));
         this.setLayout(new GridLayout(0, 1));
         Dimension textFieldDimension = new Dimension(250, 30);
         Dimension comboBoxDimension = new Dimension(81, 30);
         Dimension labelDimension = new Dimension(150, 30);
-        Dimension panelsDimension = new Dimension(600, 40);
 
                     /*Panel Titre*/
         JLabel pageTitre = new JLabel("Ajout d'un film");
@@ -142,28 +141,28 @@ public class VueAjout extends JDialog{
         annee.add(choixAnnee);
         this.getContentPane().add(annee);
 
-        /*Panel Note*/
-        JPanel note = new JPanel();
+        /*Panel Duree*/
+        JPanel duree = new JPanel();
 
-        JLabel labelnote = new JLabel("Note :");
-        labelnote.setPreferredSize(labelDimension);
-        labelnote.setMaximumSize(labelDimension);
-        note.add(labelnote);
+        JLabel labelduree = new JLabel("Duree :");
+        labelduree.setPreferredSize(labelDimension);
+        labelduree.setMaximumSize(labelDimension);
+        duree.add(labelduree);
 
-        zoneNote = new JTextField();
-        zoneNote.setName("Synopsis");
-        zoneNote.setBackground(Color.WHITE);
-        zoneNote.setOpaque(true);
-        zoneNote.setPreferredSize(textFieldDimension);
-        zoneNote.setMaximumSize(textFieldDimension);
-        note.add(zoneNote);
+        zoneDuree = new JTextField();
+        zoneDuree.setName("Synopsis");
+        zoneDuree.setBackground(Color.WHITE);
+        zoneDuree.setOpaque(true);
+        zoneDuree.setPreferredSize(textFieldDimension);
+        zoneDuree.setMaximumSize(textFieldDimension);
+        duree.add(zoneDuree);
 
-        infoNote = new JLabel("");
-        infoNote.setPreferredSize(labelDimension);
-        infoNote.setForeground(Color.RED);
-        note.add(infoNote);
+        infoDuree = new JLabel("");
+        infoDuree.setPreferredSize(labelDimension);
+        infoDuree.setForeground(Color.RED);
+        duree.add(infoDuree);
 
-        this.getContentPane().add(note);
+        this.getContentPane().add(duree);
 
         /*Panel Sypnosis*/
         JPanel synopsis = new JPanel();
@@ -222,6 +221,7 @@ public class VueAjout extends JDialog{
         this.getContentPane().add(validation);
 
         this.setVisible(true);
+        this.setVisible(b);
     }
 
     public void majValider(boolean b) {

@@ -15,7 +15,6 @@ public class Vue extends JPanel {
 
     public static final String AJOUTER = "ajouter";
     public static final String SUPPRIMER = "supprimer";
-    public VueAjout vAdd= new VueAjout();
 
     JPanel gauche;
 
@@ -33,6 +32,8 @@ public class Vue extends JPanel {
     DefaultListModel listeTitre;
     @SuppressWarnings("rawtypes")
     JList liste;
+    //VueAjout vueAjout=new VueAjout();
+
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public Vue(GestionnaireFilms gestion) {

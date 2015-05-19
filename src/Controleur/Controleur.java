@@ -22,13 +22,11 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
         super();
         this.g = g;
         this.v = v;
-		this.vueAjout=null;
     }
 
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-
 		v.maj();
 	}
 
@@ -37,7 +35,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 	@Override
 	public void actionPerformed(ActionEvent a) {
 		if(a.getActionCommand().equals(Vue.AJOUTER)){
-			this.vueAjout = new VueAjout();
+			this.vueAjout = new VueAjout(true);
 			this.vueAjout.ajouterControleur(this);
 		}
 		else if (a.getActionCommand().equals("Valider")) {
