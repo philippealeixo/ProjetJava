@@ -1,2 +1,2 @@
-Hannibal/-/09/02/2001/-/Ridley Scott/-/125/-/3/-/image/hannibal.jpg/-/Il y a dix ans, le docteur Hannibal Lecter s'echappait de sa cellule.
-Forrest Gump/-/23/06/1994/-/Robert Zemeckis/-/140/-/4/-/image/gump.jpg/-/Quelques decennies d'histoire americaine, des annees 1940 a la fin du XXeme siecle, à travers le regard et l'etrange odyssee d'un homme simple et pur, Forrest Gump.
+Hannibal/-/09/02/2001/-/Ridley Scott/-/125/-/3/-/09/02/2001/-/Il y a dix ans, le docteur Hannibal Lecter s'echappait de sa cellule.
+Forrest Gump/-/23/06/1994/-/Robert Zemeckis/-/140/-/4/-/23/06/1994/-/Quelques decennies d'histoire americaine, des annees 1940 a la fin du XXeme siecle, à travers le regard et l'etrange odyssee d'un homme simple et pur, Forrest Gump.
