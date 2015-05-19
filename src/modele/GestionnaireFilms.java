@@ -95,6 +95,8 @@ public class GestionnaireFilms {
         FileWriter sortie = new FileWriter(new File("txt/oeuvres.txt"),true);
         sortie.write(unFilm.filmToBase());
         sortie.close();
+
+        this.film.add(unFilm);
     }
     catch(IOException ioe) {
         System.err.println("IOException: " + ioe.getMessage());

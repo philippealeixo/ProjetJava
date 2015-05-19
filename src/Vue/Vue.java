@@ -123,7 +123,7 @@ public class Vue extends JPanel {
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
 }
 
-    protected void majJList () {
+    public void majJList () {
         ArrayList<Films> listeFilms = gestion.getFilm();
         String[] tab = new String[listeFilms.size()];
         for (int i=0; i<listeFilms.size(); i++) {

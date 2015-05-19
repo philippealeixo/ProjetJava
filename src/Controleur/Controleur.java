@@ -45,6 +45,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 				String [] data = vueAjout.getInfosDialogAjoutFilm(); // data de la JDialog
 				g.ajouterFilm(data[0],data[1],data[2],data[3],data[4],data[5]);
 				vueAjout.dispose();
+				v.majJList();
 			}
 		}
 
