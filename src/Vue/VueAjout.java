@@ -24,11 +24,12 @@ public class VueAjout extends JDialog{
 
     public VueAjout() {
 
-        this.setSize(new Dimension(800, 400));
+        this.setSize(new Dimension(500, 400));
         this.setLayout(new GridLayout(0, 1));
         Dimension textFieldDimension = new Dimension(250, 30);
-        Dimension comboBoxDimension = new Dimension(82, 30);
+        Dimension comboBoxDimension = new Dimension(81, 30);
         Dimension labelDimension = new Dimension(150, 30);
+        Dimension panelsDimension = new Dimension(600, 40);
 
                     /*Panel Titre*/
         JLabel pageTitre = new JLabel("Ajout d'un film");
@@ -90,11 +91,15 @@ public class VueAjout extends JDialog{
         /*Panel Annee*/
 
         JPanel annee = new JPanel();
-
-        JLabel labelannee = new JLabel("Annee :");
+        //annee.setPreferredSize(panelsDimension);
+        //annee.setMaximumSize(panelsDimension);
+        JLabel labelannee = new JLabel("Date de sortie :");
+        labelannee.setHorizontalAlignment(SwingConstants.LEFT);
         labelannee.setPreferredSize(labelDimension);
         labelannee.setMaximumSize(labelDimension);
         annee.add(labelannee);
+
+
         /*ANNEE*/
         choixAnnee = new JComboBox<String>();
         choixAnnee.addItem("Annee");
@@ -102,8 +107,6 @@ public class VueAjout extends JDialog{
         for (int i=1870; i<2041; i++) {
             choixAnnee.addItem(""+i);
             cpt++;
-            if (i == 2015)
-                choixAnnee.setSelectedIndex(cpt);
         }
         choixAnnee.setPreferredSize(comboBoxDimension);
         choixAnnee.setMaximumSize(comboBoxDimension);
@@ -139,6 +142,29 @@ public class VueAjout extends JDialog{
         annee.add(choixAnnee);
         this.getContentPane().add(annee);
 
+        /*Panel Note*/
+        JPanel note = new JPanel();
+
+        JLabel labelnote = new JLabel("Note :");
+        labelnote.setPreferredSize(labelDimension);
+        labelnote.setMaximumSize(labelDimension);
+        note.add(labelnote);
+
+        zoneNote = new JTextField();
+        zoneNote.setName("Synopsis");
+        zoneNote.setBackground(Color.WHITE);
+        zoneNote.setOpaque(true);
+        zoneNote.setPreferredSize(textFieldDimension);
+        zoneNote.setMaximumSize(textFieldDimension);
+        note.add(zoneNote);
+
+        infoNote = new JLabel("");
+        infoNote.setPreferredSize(labelDimension);
+        infoNote.setForeground(Color.RED);
+        note.add(infoNote);
+
+        this.getContentPane().add(note);
+
         /*Panel Sypnosis*/
         JPanel synopsis = new JPanel();
 
@@ -161,29 +187,6 @@ public class VueAjout extends JDialog{
         synopsis.add(infoSynopsis);
 
         this.getContentPane().add(synopsis);
-
-        /*Panel Note*/
-        JPanel note = new JPanel();
-
-        JLabel labelnote = new JLabel("Note :");
-        labelnote.setPreferredSize(labelDimension);
-        labelnote.setMaximumSize(labelDimension);
-        note.add(labelnote);
-
-        zoneNote = new JTextField();
-        zoneNote.setName("Image");
-        zoneNote.setBackground(Color.WHITE);
-        zoneNote.setOpaque(true);
-        zoneNote.setPreferredSize(textFieldDimension);
-        zoneNote.setMaximumSize(textFieldDimension);
-        note.add(zoneNote);
-
-        infoNote = new JLabel("");
-        infoNote.setPreferredSize(labelDimension);
-        infoNote.setForeground(Color.RED);
-        note.add(infoNote);
-
-        this.getContentPane().add(note);
 
         /*Panel Image*/
         JPanel image = new JPanel();
@@ -234,18 +237,19 @@ public class VueAjout extends JDialog{
         this.zoneImage.addFocusListener(controleur);
     }
 
-    protected boolean formulaireOK () {
-        boolean titreVide = (zoneTitre.getText().equals("") || zoneTitre.getText() == null);
-        boolean realisateurVide = (zoneRealisateur.getText().equals("") || zoneRealisateur.getText() == null);
-        boolean synopsisVide = (zoneSynopsis.getText().equals("") || zoneRealisateur.getText() == null);
-        boolean dateNonEntree = (choixJour.getSelectedIndex() == 0 || choixMois.getSelectedIndex() == 0 || choixAnnee.getSelectedIndex() == 0);
-        boolean fichierVide = zoneImage.getText() == null;
+    public boolean formulaireOK () {
+        boolean vTitre = (zoneTitre.getText().equals("") || zoneTitre.getText() == null);
+        boolean vRealisateur= (zoneRealisateur.getText().equals("") || zoneRealisateur.getText() == null);
+        boolean vSynopsis = (zoneSynopsis.getText().equals("") || zoneSynopsis.getText() == null);
+        boolean vAnnee = (choixJour.getSelectedIndex() == 0 || choixMois.getSelectedIndex() == 0 || choixAnnee.getSelectedIndex() == 0);
+        boolean vDuree = (zoneDuree.getText().equals("") || zoneDuree.getText() == null);
+        boolean vImage = zoneImage.getText() == null;
 
-        return (!titreVide && !realisateurVide && !synopsisVide && !dateNonEntree && !fichierVide);
+        return (!vTitre && !vRealisateur && !vSynopsis && !vAnnee && !vDuree && !vImage);
     }
 
 
-    protected void updateEnregistrerFilmButton () {
+    public void valider() {
         if (formulaireOK()) {
             this.valider.setEnabled(true);
         }

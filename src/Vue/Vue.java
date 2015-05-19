@@ -15,8 +15,11 @@ public class Vue extends JPanel {
 
     public static final String AJOUTER = "ajouter";
     public static final String SUPPRIMER = "supprimer";
+    public VueAjout vAdd= new VueAjout();
 
     JPanel gauche;
+
+
     JLabel titreG;
     JLabel information;
     GestionnaireFilms gestion;
@@ -92,11 +95,10 @@ public class Vue extends JPanel {
     }
 
 public void maj() {
-
         information.setIcon(new ImageIcon(gestion.getImage(liste.getSelectedIndex())));
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
-
 }
+
 
 
     public int getIndex() {
