@@ -11,7 +11,7 @@ public class GestionnaireFilms {
     private ArrayList<Films> film;
 
     public GestionnaireFilms(String cheminfichier) {
-        film = new ArrayList<Films>();
+        film = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(cheminfichier));
             String ligne; //lecture ligne par ligne
@@ -31,7 +31,7 @@ public class GestionnaireFilms {
     public Films creerFilms(String ligne) {
 
         String[] fichier = ligne.split("/-/");
-        if (fichier[4].equals(""))
+        if (fichier[4].equals("-1"))
             return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), new File(fichier[5]), fichier[6]);
         else
             return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]);
