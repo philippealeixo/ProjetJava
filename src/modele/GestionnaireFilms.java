@@ -81,7 +81,7 @@ public class GestionnaireFilms {
             sortie.close();
         }
         catch(FileNotFoundException e) {
-            System.out.println("Fichier non trouv�");
+            System.out.println("Fichier non trouve");
         }
         catch(IOException io) {
             System.out.println("Ecriture du fichier impossible...");
@@ -110,7 +110,7 @@ public class GestionnaireFilms {
      * Fonction qui trie les listes de film par nom
      */
     public void sortByName() {
-        Collections.sort(this.film, Films.compareByTitre());
+        Collections.sort(this.film, Films.compareByNom());
     }
 
     /**

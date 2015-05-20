@@ -1,10 +1,7 @@
 package modele;
 
 import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Comparator;
-import java.util.Date;
 
 /**
  * Created by Philippe on 13/05/2015.
@@ -20,7 +17,6 @@ public class Films {
     private int note;
     private boolean estNote;
 
-    private int resultatSave;
 
     public Films(String titre, String annee, String realisateur, int duree, int note, File image, String synopsis) {
         this.titre = titre;
@@ -135,10 +131,10 @@ public class Films {
      * Ajout des differents COmparator car on veut pouvoir trier des Films selon plusieurs parametres
      */
     /**
-     * Ajout du Caparateur par titre
+     * Ajout du Caparator byName
      * @return Comparator
      */
-    static Comparator<Films> compareByTitre() {
+    static Comparator<Films> compareByNom() {
         return new Comparator<Films>() {
             @Override
             public int compare(Films f1, Films f2) {
@@ -148,30 +144,19 @@ public class Films {
     }
 
     /**
-     * Ajout du Caparateur par annee
+     * Ajout du Caparator byYear
      * @return Comparator
      */
     static Comparator<Films> compareByYear() {
         return new Comparator<Films>() {
             @Override
             public int compare(Films f1, Films f2) {
-                try {
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                String dateInString1 = f1.annee;
-                String dateInString2 = f2.annee;
-
-                    Date date1 = formatter.parse(dateInString1);
-                    Date date2 = formatter.parse(dateInString2);
-                    f1.resultatSave = date2.compareTo(date1);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                return f1.resultatSave;
+                return f1.annee.compareTo(f2.annee);
             }
         };
     }
     /**
-     * Ajout du Caparateur Note
+     * Ajout du Caparator byNote (disponible seulement pour les films notes)
      * @return Comparator
      */
     static Comparator<Films> compareByNote() { // tri par note decroissante
