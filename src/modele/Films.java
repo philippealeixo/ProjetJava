@@ -162,7 +162,7 @@ public class Films {
 
                     Date date1 = formatter.parse(dateInString1);
                     Date date2 = formatter.parse(dateInString2);
-                    f1.resultatSave = date2.compareTo(date1);//Commentaire pour commit
+                    f1.resultatSave = date2.compareTo(date1);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
