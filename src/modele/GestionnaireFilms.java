@@ -16,7 +16,7 @@ public class GestionnaireFilms {
             BufferedReader reader = new BufferedReader(new FileReader(cheminfichier));
             String ligne; //lecture ligne par ligne
             while ((ligne = reader.readLine()) != null) {
-                film.add(creerFilms(ligne));
+                film.add(creerFilmsNote(ligne));
             }
             reader.close();
         } catch (FileNotFoundException e) {
