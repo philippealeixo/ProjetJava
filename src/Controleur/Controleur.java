@@ -41,16 +41,12 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 			this.vueAjout.ajouterControleur(this);
 		}
 		if (a.getActionCommand().equals(VueAjout.VALIDATION)) {
-			this.vueAjout.valider();
 			if (vueAjout.formulaireOK()) {
 				String [] data = vueAjout.getInfosDialogAjoutFilm(); // data de la JDialog
 				g.ajouterFilm(data[0],data[1],data[2],data[3],data[4],data[5]);
 				vueAjout.dispose();
 				v.majJList();
 			}
-		}
-		if (a.getActionCommand().equals("Valider")) {
-			this.vueAjout.valider();
 		}
 		if(a.getActionCommand().equals(Vue.ALL)){
 			v.selectAll();

@@ -249,13 +249,6 @@ public class VueAjout extends JDialog{
         return (!vTitre && !vRealisateur && !vSynopsis && !vAnnee && !vDuree && !vImage);
     }
 
-
-    public void valider() {
-        if (this.formulaireOK()) {
-           String[] a = this.getInfosDialogAjoutFilm();
-        }
-    }
-
     public String [] getInfosDialogAjoutFilm () {
         String [] s;
         if (formulaireOK()) {
