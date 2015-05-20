@@ -197,7 +197,6 @@ public class Vue extends JPanel {
     }
 
     public int getIndex() {
-
         return liste.getSelectedIndex();
     }
 }

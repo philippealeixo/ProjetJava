@@ -20,7 +20,7 @@ public class GestionnaireFilms {
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Fichier non trouv�");
+            System.out.println("Fichier non trouve");
         } catch (IOException e) {
             System.out.println("Lecture du fichier impossible");
         }
