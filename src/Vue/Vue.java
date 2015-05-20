@@ -2,6 +2,7 @@ package Vue;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.swing.*;
 
@@ -21,7 +22,7 @@ public class Vue extends JPanel {
 
 
     String[] optionTrier = { "Trie par note", "Trie par annee", "Trie par titre"}; // d�finition des options de la liste d�roulante
-    JComboBox trier = new JComboBox(optionTrier); // Creation de la liste d�roulante
+    JComboBox trier = new JComboBox(optionTrier); // Creation de la liste deroulante
     //trier.setSelectedIndex(0);
 
 
@@ -149,7 +150,10 @@ public class Vue extends JPanel {
     }
 
     public void maj() {
-        liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+        if (liste.getAnchorSelectionIndex() <= liste.getLastVisibleIndex())
+            liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+        else
+            liste.setSelectedIndex(liste.getLastVisibleIndex());
         information.setIcon(new ImageIcon(gestion.getImage(liste.getSelectedIndex())));
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
 }
@@ -161,7 +165,23 @@ public class Vue extends JPanel {
             tab[i] = listeFilms.get(i).getTitre();
         }
         liste.setListData(tab);
-        liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+        if (liste.getAnchorSelectionIndex() <= liste.getLastVisibleIndex())
+            liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+        else
+            liste.setSelectedIndex(liste.getLastVisibleIndex());
+    }
+
+    public void majJListTri() {
+        ArrayList<Films> listeFilms = gestion.getFilm();
+        String[] tab = new String[listeFilms.size()];
+        for (int i=0; i<listeFilms.size(); i++) {
+            tab[i] = listeFilms.get(i).getTitre();
+        }
+        liste.setListData(tab);
+        if (liste.getAnchorSelectionIndex() <= liste.getLastVisibleIndex())
+            liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+        else
+            liste.setSelectedIndex(liste.getLastVisibleIndex());
     }
 
     public void majButton(){
@@ -194,7 +214,10 @@ public class Vue extends JPanel {
     }
 
     public int getIndex() {
-
         return liste.getSelectedIndex();
+    }
+
+    public String getValueSelectedTri() {
+        return (String) trier.getSelectedItem();
     }
 }

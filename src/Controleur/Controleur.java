@@ -37,39 +37,51 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 
 	@Override
 	public void actionPerformed(ActionEvent a) {
-		if(a.getActionCommand().equals(Vue.AJOUTER)){
+		if (a.getActionCommand().equals(Vue.AJOUTER)) {
 			this.vueAjout = new VueAjout(true);
 			this.vueAjout.ajouterControleur(this);
 		}
 		if (a.getActionCommand().equals(VueAjout.VALIDATION)) {
 			if (vueAjout.formulaireOK()) {
-				String [] data = vueAjout.getInfosDialogAjoutFilm(); // data de la JDialog
-				g.ajouterFilm(data[0],data[1],data[2],data[3],data[4],data[5]);
+				String[] data = vueAjout.getInfosDialogAjoutFilm(); // data de la JDialog
+				g.ajouterFilm(data[0], data[1], data[2], data[3], data[4], data[5]);
 				vueAjout.dispose();
 				v.majJList();
 			}
 		}
-		if(a.getActionCommand().equals(Vue.ALL)){
+		if (a.getActionCommand().equals(Vue.ALL)) {
 			v.selectAll();
 			v.majJList();
 		}
-		if(a.getActionCommand().equals(Vue.PASNOTE)){
+		if (a.getActionCommand().equals(Vue.PASNOTE)) {
 			v.selectPasNote();
 			v.majJList();
 		}
-		if (a.getActionCommand().equals(Vue.NOTE)){
+		if (a.getActionCommand().equals(Vue.NOTE)) {
 			v.selectNote();
 			v.majJList();
 		}
-		if (a.getActionCommand().equals(Vue.NOTER)){
-			Object[] notes = {0,1,2,3,4,5};
-			int result = (int) JOptionPane.showInputDialog(null, "Veuillez noter le film\n", "NOTER FILM", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3);
+		if (a.getActionCommand().equals(Vue.NOTER)) {
+			Object[] notes = {0, 1, 2, 3, 4, 5};
+			int result = (int) JOptionPane.showInputDialog(null, "Veuillez noter le Films\n", "NOTER Films", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3);
 			g.setNote(v.getIndex(), result);
 			g.ajoutDansBase("txt/oeuvres.txt");
 			v.majJList();
 		}
-
+		if (a.getActionCommand().equals("tri")) { // dans le cas ou on utilise la JComboBox de tri
+			if (v.getValueSelectedTri().equals("Trie par titre")) {
+				g.sortByName();
+				v.majJListTri(); // mettre a jour la liste de l'onglet courant
+			} else if (v.getValueSelectedTri().equals("Trie par annee")) {
+				g.sortByYear();
+				v.majJListTri(); // mettre a jour la liste de l'onglet courant
+			} else if (v.getValueSelectedTri().equals("Trie par note")) { // option disponible seulement dans l'onglet des films notes
+				g.sortByNote();
+				v.majJListTri(); // mettre a jour la liste de l'onglet courant
+			}
+		}
 	}
+
 
 	@Override
 	public void focusGained(FocusEvent e) {
