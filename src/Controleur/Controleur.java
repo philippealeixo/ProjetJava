@@ -80,6 +80,17 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 				v.majJListTri(); // mettre a jour la liste de l'onglet courant
 			}
 		}
+		
+		if(a.getActionCommand().equals(VueAjout.CHOISIRATION)){
+	        JFileChooser fileopen = new JFileChooser();
+
+	        int ret = fileopen.showDialog(null, "Choisir le fichier");
+	        
+	        if (ret == JFileChooser.APPROVE_OPTION) {
+	        	File file = fileopen.getSelectedFile();
+	        }
+			
+		}
 	}
 
 

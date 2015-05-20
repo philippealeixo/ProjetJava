@@ -8,6 +8,7 @@ import java.awt.*;
 public class VueAjout extends JDialog{
 
     public static final String VALIDATION = "Validation";
+    public static final String CHOISIRATION = "Choisiration";
 
     private JLabel infoTitre, infoRealisateur, infoDuree, infoAnnee, infoSynopsis, infoImage, infoNote;
     private JTextField zoneTitre, zoneRealisateur, zoneAnnee, zoneDuree, zoneImage,zoneSynopsis, zoneNote ;
@@ -211,6 +212,15 @@ public class VueAjout extends JDialog{
 
         this.getContentPane().add(image);
 
+        /*Panel Choisir*/
+        JPanel Choisiration = new JPanel();
+
+        choisir = new JButton("Chemin de l'image");
+        choisir.setActionCommand(CHOISIRATION);
+        Choisiration.add(choisir);
+        this.getContentPane().add(Choisiration);
+        this.setVisible(true);
+        this.setVisible(b);
 
         /*Panel Valider*/
         JPanel validation = new JPanel();
@@ -236,6 +246,7 @@ public class VueAjout extends JDialog{
         this.zoneRealisateur.addFocusListener(controleur);
         this.zoneSynopsis.addFocusListener(controleur);
         this.zoneImage.addFocusListener(controleur);
+        this.choisir.addActionListener(controleur);
     }
 
     public boolean formulaireOK () {
