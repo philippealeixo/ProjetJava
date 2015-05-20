@@ -234,7 +234,6 @@ public class VueAjout extends JDialog{
         this.valider.addActionListener(controleur);
         this.zoneTitre.addFocusListener(controleur);
         this.zoneRealisateur.addFocusListener(controleur);
-        this.zoneAnnee.addFocusListener(controleur);
         this.zoneSynopsis.addFocusListener(controleur);
         this.zoneImage.addFocusListener(controleur);
     }

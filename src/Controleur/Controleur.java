@@ -64,7 +64,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 		}
 		if (a.getActionCommand().equals(Vue.NOTER)){
 			Object[] notes = {0,1,2,3,4,5};
-			int result = (int) JOptionPane.showInputDialog(null, "Veuillez noter le film\n", "NOTER FILM", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3);
+			int result = Integer.parseInt((String) JOptionPane.showInputDialog(null, "Veuillez noter le film\n", "NOTER FILM", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3));
 			System.out.println(result);
 		}
 

@@ -16,11 +16,11 @@ public class GestionnaireFilms {
             BufferedReader reader = new BufferedReader(new FileReader(cheminfichier));
             String ligne; //lecture ligne par ligne
             while ((ligne = reader.readLine()) != null) {
-                film.add(creerFilmsNote(ligne));
+                film.add(creerFilms(ligne));
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Fichier non trouvé");
+            System.out.println("Fichier non trouvï¿½");
         } catch (IOException e) {
             System.out.println("Lecture du fichier impossible");
         }
@@ -31,7 +31,6 @@ public class GestionnaireFilms {
     public Films creerFilmsNote(String ligne) {
 
         String[] fichier = ligne.split("/-/");
-        System.out.println(fichier.length);
         return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]);
     }
 
@@ -77,12 +76,12 @@ public class GestionnaireFilms {
         try {
             PrintWriter sortie= new PrintWriter(new BufferedWriter(new java.io.FileWriter(filename)));
             for(int i=0;i<this.film.size();i++) {
-                sortie.write(this.film.get(i).filmToBase());
+                sortie.write(this.film.get(i).filmNonNoteToBase());
             }
             sortie.close();
         }
         catch(FileNotFoundException e) {
-            System.out.println("Fichier non trouvé");
+            System.out.println("Fichier non trouvï¿½");
         }
         catch(IOException io) {
             System.out.println("Ecriture du fichier impossible...");
@@ -93,7 +92,7 @@ public class GestionnaireFilms {
     try {
         Films unFilm = new Films(titre, annee, realisateur, Integer.parseInt(duree), new File(image), synopsis);
         FileWriter sortie = new FileWriter(new File("txt/oeuvres.txt"),true);
-        sortie.write(unFilm.filmToBase());
+        sortie.write(unFilm.filmNonNoteToBase());
         sortie.close();
 
         this.film.add(unFilm);

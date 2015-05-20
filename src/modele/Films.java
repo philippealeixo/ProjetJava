@@ -65,7 +65,7 @@ public class Films {
         return titre + "-" + realisateur + "-" + duree + "-" + synopsis;
     }
 
-    public String filmToBase() {
+    public String filmNonNoteToBase() {
         String s=new String();
 
         s=s+this.titre+"/-/";
