@@ -8,6 +8,7 @@ import java.io.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modele.GestionnaireFilms;
 
@@ -81,13 +82,13 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 			}
 		}
 		
-		if(a.getActionCommand().equals(VueAjout.CHOISIRATION)){
-	        JFileChooser fileopen = new JFileChooser();
+		if(a.getActionCommand().equals(VueAjout.CHOISIRATION)){ //Si on clique sur ajouter une image
+	        JFileChooser fileopen = new JFileChooser(); //On cree la box parcourir
 
 	        int ret = fileopen.showDialog(null, "Choisir le fichier");
 	        
-	        if (ret == JFileChooser.APPROVE_OPTION) {
-	        	File file = fileopen.getSelectedFile();
+	        if (ret == JFileChooser.APPROVE_OPTION) {	// On ouvre la box parcourir
+	        	File file = fileopen.getSelectedFile(); // On recupere le lien choisit dans file
 	        }
 			
 		}
