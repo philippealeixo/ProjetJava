@@ -142,7 +142,6 @@ public class Vue extends JPanel {
         trier.addActionListener(c);
         noter.addActionListener(c);
        // supprimer.addActionListener(c);
-        trier.addActionListener(c);
 
         all.addActionListener(c);
         note.addActionListener(c);

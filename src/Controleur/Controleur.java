@@ -65,20 +65,22 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 			g.ajoutDansBase("txt/oeuvres.txt");
 			v.majJList();
 		}
-		if (a.getActionCommand().equals("tri")) { // dans le cas ou on utilise la JComboBox de tri
-			if (v.getValueSelectedTri().equals("Trier par Nom")) {
+		//if (a.getActionCommand().equals("tri")) { // dans le cas ou on utilise la JComboBox de tri
+			if (v.getValueSelectedTri().equals("Trie par titre")) {
 				g.sortByName();
+				System.out.println("ft");
 			}
-			else if (v.getValueSelectedTri().equals("Trier par Annee")) {
+			else if (v.getValueSelectedTri().equals("Trie par annee")) {
 				g.sortByYear();
+				System.out.println("ft");
 			}
-			else if (v.getValueSelectedTri().equals("Trier par Note")) { // option disponible seulement dans l'onglet des films notes
+			else if (v.getValueSelectedTri().equals("Trie par note")) { // option disponible seulement dans l'onglet des films notes
 				g.sortByNote();
+				System.out.println("ft");
 			}
 			v.majJListTri(); // mettre a jour la liste de l'onglet courant
 		}
 
-	}
 
 	@Override
 	public void focusGained(FocusEvent e) {
