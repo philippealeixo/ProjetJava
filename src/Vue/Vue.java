@@ -1,9 +1,6 @@
 package Vue;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -18,6 +15,9 @@ public class Vue extends JPanel {
     public static final String AJOUTER = "ajouter";
     public static final String SUPPRIMER = "supprimer";
     public static final String NOTER = "noter";
+    public static final String ALL = "all";
+    public static final String NOTE = "note";
+    public static final String PASNOTE = "non noter";
 
 
     String[] optionTrier = { "Trie par note", "Trie par annee", "Trie par titre"}; // définition des options de la liste déroulante
@@ -25,10 +25,11 @@ public class Vue extends JPanel {
     //trier.setSelectedIndex(0);
 
 
-
-    JPanel gauche;
+    JPanel global; // Panneau general
+    JPanel menu; //Panneau menu
+    JPanel gauche;// Panneau de gauche
     JPanel boutons; // JPabel composé de Bouton
-    JPanel droite;
+    JPanel droite;// Panneau de droite
 
     JLabel titreD;
     JLabel titreG;
@@ -38,8 +39,9 @@ public class Vue extends JPanel {
     JButton ajouter;
     JButton supprimer;
     JButton noter;
-    JCheckBox pasVu;
-    JCheckBox vu;
+    JCheckBox pasNote;
+    JCheckBox note;
+    JCheckBox all;
 
 
 
@@ -52,6 +54,20 @@ public class Vue extends JPanel {
     public Vue(GestionnaireFilms gestion) {
 
         this.gestion = gestion;
+
+        global = new JPanel();
+        global.setLayout(new BorderLayout());
+
+        // GESTION DES CHECKBOXS
+        all = new JCheckBox("tous");
+        note = new JCheckBox("note");
+        pasNote = new JCheckBox("pas note");
+        all.setSelected(true);
+        all.setActionCommand(ALL);
+        pasNote.setActionCommand(PASNOTE);
+        note.setActionCommand(NOTE);
+
+
         gauche = new JPanel();
         titreG = new JLabel("Liste Films :");
         listeTitre = new DefaultListModel();
@@ -76,6 +92,13 @@ public class Vue extends JPanel {
         information.setBackground(Color.WHITE);
         information.setOpaque(true);
 
+        // Panneau du menu
+        menu = new JPanel();
+        menu.setLayout(new FlowLayout());
+        menu.add(all);
+        menu.add(note);
+        menu.add(pasNote);
+
         boutons = new JPanel();
         boutons.add(noter);
         boutons.add(ajouter);
@@ -85,6 +108,7 @@ public class Vue extends JPanel {
         gauche.add(titreG, BorderLayout.PAGE_START);
         gauche.add(liste, BorderLayout.CENTER);
         gauche.add(boutons, BorderLayout.PAGE_END);
+        gauche.setBorder(BorderFactory.createMatteBorder(0,0,0,10,new Color(0,0,0,0)));
 
 
         droite = new JPanel();
@@ -93,10 +117,13 @@ public class Vue extends JPanel {
         droite.add(titreD, BorderLayout.PAGE_START);
         droite.add(information, BorderLayout.CENTER);
 
+        global.add(menu, BorderLayout.PAGE_START);
+        global.add(gauche, BorderLayout.LINE_START);
+        global.add(droite, BorderLayout.CENTER);
+
         this.setPreferredSize(new Dimension(750, 370));
         this.setLayout(new GridLayout(1, 2, 20, 0));
-        this.add(gauche);
-        this.add(droite);
+        this.add(global);
 
 
         ajouter.setEnabled(true);
@@ -113,6 +140,10 @@ public class Vue extends JPanel {
         ajouter.addActionListener(c);
         trier.addActionListener(c);
        // supprimer.addActionListener(c);
+
+        all.addActionListener(c);
+        note.addActionListener(c);
+        pasNote.addActionListener(c);
 
     }
 
@@ -133,6 +164,34 @@ public class Vue extends JPanel {
         liste.setSelectedIndex(liste.getAnchorSelectionIndex());
     }
 
+    public void majButton(){
+        noter.setEnabled(true);
+        supprimer.setEnabled(true);
+
+    }
+
+    public void selectAll(){
+        if (all.isSelected()){
+            pasNote.setSelected(false);
+            note.setSelected(false);
+            all.setSelected(true);
+            System.out.print("test ALL");
+        }
+    }
+
+    public void selectNote(){
+        pasNote.setSelected(false);
+        all.setSelected(false);
+        note.setSelected(true);
+        System.out.print("test NOTE");
+    }
+
+    public void selectPasNote(){
+        all.setSelected(false);
+        note.setSelected(false);
+        pasNote.setSelected(true);
+        System.out.print("test PAS NOTE");
+    }
 
 
     public int getIndex() {

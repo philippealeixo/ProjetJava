@@ -5,7 +5,7 @@ import Vue.*;
 import java.awt.event.*;
 import java.io.File;
 
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -29,6 +29,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		v.maj();
+		v.majButton();
 	}
 
 
@@ -47,6 +48,24 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 				vueAjout.dispose();
 				v.majJList();
 			}
+		}
+		if (a.getActionCommand().equals("Valider")) {
+			this.vueAjout.valider();
+		}
+		if(a.getActionCommand().equals(Vue.ALL)){
+			v.selectAll();
+			System.out.println("trrtt");
+		}
+		if(a.getActionCommand().equals(Vue.PASNOTE)){
+			v.selectPasNote();
+		}
+		if (a.getActionCommand().equals(Vue.NOTE)){
+			v.selectNote();
+		}
+		if (a.getActionCommand().equals(Vue.NOTER)){
+			Object[] notes = {0,1,2,3,4,5};
+			int result = (int) JOptionPane.showInputDialog(null, "Veuillez noter le film\n", "NOTER FILM", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3);
+			System.out.println(result);
 		}
 
 	}
