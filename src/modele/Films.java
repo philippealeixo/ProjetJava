@@ -1,6 +1,7 @@
 package modele;
 
 import java.io.File;
+import java.util.Comparator;
 
 /**
  * Created by Philippe on 13/05/2015.
@@ -124,4 +125,52 @@ public class Films {
         this.note = note;
         this.estNote = true;
     }
+
+
+    /**
+     * Ajout des differents COmparator car on veut pouvoir trier des Films selon plusieurs parametres
+     */
+    /**
+     * Ajout du Caparator byName
+     * @return Comparator
+     */
+    static Comparator<Films> compareByNom() {
+        return new Comparator<Films>() {
+            @Override
+            public int compare(Films f1, Films f2) {
+                return f1.titre.compareToIgnoreCase(f2.titre);
+            }
+        };
+    }
+
+    /**
+     * Ajout du Caparator byYear
+     * @return Comparator
+     */
+    static Comparator<Films> compareByYear() {
+        return new Comparator<Films>() {
+            @Override
+            public int compare(Films f1, Films f2) {
+                return f1.annee.compareTo(f2.annee);
+            }
+        };
+    }
+    /**
+     * Ajout du Caparator byNote (disponible seulement pour les films notes)
+     * @return Comparator
+     */
+    static Comparator<Films> compareByNote() { // tri par note decroissante
+        return new Comparator<Films>() {
+            @Override
+            public int compare(Films f1, Films f2) {
+                if (f1.note < f2.note)
+                    return 1;
+                else if (f1.note == f2.note)
+                    return 0;
+                else
+                    return -11;
+            }
+        };
+    }
+
 }

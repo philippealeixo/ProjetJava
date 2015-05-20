@@ -2,6 +2,7 @@ package modele;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Philippe on 13/05/2015.
@@ -104,6 +105,30 @@ public class GestionnaireFilms {
     public void setNote(int index, int note){
         film.get(index).setNote(note);
     }
+
+    /**
+     * Fonction qui trie les listes de film par nom
+     */
+    public void sortByName() {
+        Collections.sort(this.film, Films.compareByNom());
+    }
+
+    /**
+     * Fonction qui trie les listes de film par annee
+     */
+    public void sortByYear() {
+        Collections.sort(this.film, Films.compareByYear());
+    }
+
+    /**
+     * Fonction qui trie les listes de film par note (disponible seulement pour un film note)
+     */
+    public void sortByNote() {
+        Collections.sort(this.film, Films.compareByNote());
+    }
+
+
+
 /*
     //main de test uniquement
     public static void main(String[] args) {

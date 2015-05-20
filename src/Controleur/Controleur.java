@@ -43,7 +43,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 		if (a.getActionCommand().equals(VueAjout.VALIDATION)) {
 			if (vueAjout.formulaireOK()) {
 				String [] data = vueAjout.getInfosDialogAjoutFilm(); // data de la JDialog
-				g.ajouterFilm(data[0],data[1],data[2],data[3],data[4],data[5]);
+				g.ajouterFilm(data[0], data[1], data[2], data[3], data[4], data[5]);
 				vueAjout.dispose();
 				v.majJList();
 			}
@@ -60,10 +60,22 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 		}
 		if (a.getActionCommand().equals(Vue.NOTER)){
 			Object[] notes = {0,1,2,3,4,5};
-			int result = (int) JOptionPane.showInputDialog(null, "Veuillez noter le film\n", "NOTER FILM", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3);
+			int result = (int) JOptionPane.showInputDialog(null, "Veuillez noter le Films\n", "NOTER Films", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3);
 			g.setNote(v.getIndex(), result);
 			g.ajoutDansBase("txt/oeuvres.txt");
 			v.majJList();
+		}
+		if (a.getActionCommand().equals("tri")) { // dans le cas ou on utilise la JComboBox de tri
+			if (v.getValueSelectedTri().equals("Trier par Nom")) {
+				g.sortByName();
+			}
+			else if (v.getValueSelectedTri().equals("Trier par Annee")) {
+				g.sortByYear();
+			}
+			else if (v.getValueSelectedTri().equals("Trier par Note")) { // option disponible seulement dans l'onglet des films notes
+				g.sortByNote();
+			}
+			v.majJListTri(); // mettre a jour la liste de l'onglet courant
 		}
 
 	}

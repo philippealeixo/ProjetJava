@@ -2,6 +2,7 @@ package Vue;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.swing.*;
 
@@ -20,8 +21,8 @@ public class Vue extends JPanel {
     public static final String PASNOTE = "non noter";
 
 
-    String[] optionTrier = { "Trie par note", "Trie par annee", "Trie par titre"}; // dï¿½finition des options de la liste dï¿½roulante
-    JComboBox trier = new JComboBox(optionTrier); // Creation de la liste dï¿½roulante
+    String[] optionTrier = { "Trie par note", "Trie par annee", "Trie par titre"}; // définition des options de la liste déroulante
+    JComboBox trier = new JComboBox(optionTrier); // Creation de la liste deroulante
     //trier.setSelectedIndex(0);
 
 
@@ -141,6 +142,7 @@ public class Vue extends JPanel {
         trier.addActionListener(c);
         noter.addActionListener(c);
        // supprimer.addActionListener(c);
+        trier.addActionListener(c);
 
         all.addActionListener(c);
         note.addActionListener(c);
@@ -165,6 +167,19 @@ public class Vue extends JPanel {
         }
         liste.setListData(tab);
         liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+    }
+
+    public void majJListTri() {
+        ArrayList<Films> listeFilms = gestion.getFilm();
+        String[] tab = new String[listeFilms.size()];
+        for (int i=0; i<listeFilms.size(); i++) {
+            tab[i] = listeFilms.get(i).getTitre();
+        }
+        liste.setListData(tab);
+        if (liste.getAnchorSelectionIndex() <= liste.getLastVisibleIndex())
+            liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+        else
+            liste.setSelectedIndex(liste.getLastVisibleIndex());
     }
 
     public void majButton(){
@@ -198,5 +213,9 @@ public class Vue extends JPanel {
 
     public int getIndex() {
         return liste.getSelectedIndex();
+    }
+
+    public String getValueSelectedTri() {
+        return (String) trier.getSelectedItem();
     }
 }
