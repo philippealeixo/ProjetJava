@@ -34,6 +34,7 @@ public class Films {
         this.realisateur = realisateur;
         this.duree = duree;
         this.image = image;
+        this.note = -1;
         this.synopsis = synopsis;
         this.estNote=false;
     }
@@ -93,7 +94,7 @@ public class Films {
         s=s+this.annee+"/-/";
         s=s+this.realisateur+"/-/";
         s=s+this.duree+"/-/";
-        s=s+"/-/";
+        s=s+"-1/-/";
         s=s+this.image+"/-/";
         s=s+this.synopsis + System.getProperty("line.separator");
 
@@ -103,12 +104,18 @@ public class Films {
     public String getInfosHTML() {
         String s = new String();
 
-            s += "<html>Titre : " + this.titre + "<br/>";
-            s += "<br/>Premiere Sortie : " + this.annee + "<br/>";
-            s += "Realisateur : " + this.realisateur + "<br/>";
-            s += "Duree : " + this.duree + " min<br/>";
-            s += "Note : " + this.note +"<br/>";
-            s += "Resume : <br/>" + this.synopsis + "<br/></html>";
+        s += "<html>Titre : " + this.titre + "<br/>";
+        s += "<br/>Premiere Sortie : " + this.annee + "<br/>";
+        s += "Realisateur : " + this.realisateur + "<br/>";
+        s += "Duree : " + this.duree + " min<br/>";
+        if (this.note!=-1) {
+            s += "Note : " + this.note + "<br/>";
+        }
+        else{
+            s += "Note : ND<br>";
+        }
+
+        s += "Resume : <br/>" + this.synopsis + "<br/></html>";
 
         return s;
     }
