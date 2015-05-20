@@ -88,9 +88,9 @@ public class GestionnaireFilms {
         }
     }
 
-    public void ajouterFilm (String titre, String realisateur, String annee, String duree, String synopsis, String image) {
+    public void ajouterFilm (String titre, String realisateur, String annee, String duree, String synopsis, File image) {
     try {
-        Films unFilm = new Films(titre, annee, realisateur, Integer.parseInt(duree), new File(image), synopsis);
+        Films unFilm = new Films(titre, annee, realisateur, Integer.parseInt(duree), image, synopsis);
         FileWriter sortie = new FileWriter(new File("txt/oeuvres.txt"),true);
         sortie.write(unFilm.filmToBase());
         sortie.close();

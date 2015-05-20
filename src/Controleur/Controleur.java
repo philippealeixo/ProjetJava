@@ -19,6 +19,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
     GestionnaireFilms g;
     Vue v;
 	VueAjout vueAjout;
+	File file;
 
     public Controleur(GestionnaireFilms g, Vue v) {
         super();
@@ -45,7 +46,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 		if (a.getActionCommand().equals(VueAjout.VALIDATION)) {
 			if (vueAjout.formulaireOK()) {
 				String[] data = vueAjout.getInfosDialogAjoutFilm(); // data de la JDialog
-				g.ajouterFilm(data[0], data[1], data[2], data[3], data[4], data[5]);
+				g.ajouterFilm(data[0], data[1], data[2], data[3], data[4], file);
 				vueAjout.dispose();
 				v.majJList();
 			}
@@ -88,7 +89,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 	        int ret = fileopen.showDialog(null, "Choisir le fichier");
 	        
 	        if (ret == JFileChooser.APPROVE_OPTION) {	// On ouvre la box parcourir
-	        	File file = fileopen.getSelectedFile(); // On recupere le lien choisit dans file
+	        	file = fileopen.getSelectedFile(); // On recupere le lien choisit dans file
 	        }
 			
 		}
