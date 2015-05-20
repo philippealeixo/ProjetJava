@@ -14,6 +14,7 @@ public class Films {
     private String synopsis;
     private File image;
     private int note;
+    private boolean estNote;
 
 
     public Films(String titre, String annee, String realisateur, int duree, int note, File image, String synopsis) {
@@ -24,6 +25,7 @@ public class Films {
         this.image = image;
         this.synopsis = synopsis;
         this.note = note;
+        this.estNote=true;
     }
 
     public Films(String titre, String annee, String realisateur, int duree, File image, String synopsis) {
@@ -33,6 +35,7 @@ public class Films {
         this.duree = duree;
         this.image = image;
         this.synopsis = synopsis;
+        this.estNote=false;
     }
 
     public String getTitre() {
@@ -60,6 +63,10 @@ public class Films {
     }
 
     public File getImage() { return image; }
+
+    public boolean isEstNote() {
+        return estNote;
+    }
 
     public String toString() {
         return titre + "-" + realisateur + "-" + duree + "-" + synopsis;
