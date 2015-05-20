@@ -16,7 +16,7 @@ public class GestionnaireFilms {
             BufferedReader reader = new BufferedReader(new FileReader(cheminfichier));
             String ligne; //lecture ligne par ligne
             while ((ligne = reader.readLine()) != null) {
-                film.add(creerFilmsNote(ligne));
+                film.add(creerFilms(ligne));
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -28,16 +28,13 @@ public class GestionnaireFilms {
     }
 
 
-    public Films creerFilmsNote(String ligne) {
-
-        String[] fichier = ligne.split("/-/");
-        return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]);
-    }
-
     public Films creerFilms(String ligne) {
 
-        String fichier[] = ligne.split("/-/");
-        return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), new File(fichier[4]), fichier[5]);
+        String[] fichier = ligne.split("/-/");
+        if (fichier[4].equals(""))
+            return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), new File(fichier[5]), fichier[6]);
+        else
+            return new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]);
     }
 
     public ArrayList<Films> getFilm() {
@@ -72,11 +69,13 @@ public class GestionnaireFilms {
     }
 
     public void ajoutDansBase(String filename) {
-        this.ajouteFilm(this.film);
         try {
             PrintWriter sortie= new PrintWriter(new BufferedWriter(new java.io.FileWriter(filename)));
             for(int i=0;i<this.film.size();i++) {
-                sortie.write(this.film.get(i).filmNonNoteToBase());
+                if (film.get(i).estNote())
+                    sortie.write(this.film.get(i).filmToBase());
+                else
+                    sortie.write(this.film.get(i).filmNonNoteToBase());
             }
             sortie.close();
         }
@@ -92,7 +91,7 @@ public class GestionnaireFilms {
     try {
         Films unFilm = new Films(titre, annee, realisateur, Integer.parseInt(duree), new File(image), synopsis);
         FileWriter sortie = new FileWriter(new File("txt/oeuvres.txt"),true);
-        sortie.write(unFilm.filmNonNoteToBase());
+        sortie.write(unFilm.filmToBase());
         sortie.close();
 
         this.film.add(unFilm);
@@ -100,6 +99,10 @@ public class GestionnaireFilms {
     catch(IOException ioe) {
         System.err.println("IOException: " + ioe.getMessage());
     }
+    }
+
+    public void setNote(int index, int note){
+        film.get(index).setNote(note);
     }
 /*
     //main de test uniquement

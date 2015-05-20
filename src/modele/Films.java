@@ -64,12 +64,26 @@ public class Films {
 
     public File getImage() { return image; }
 
-    public boolean isEstNote() {
+    public boolean estNote() {
         return estNote;
     }
 
     public String toString() {
         return titre + "-" + realisateur + "-" + duree + "-" + synopsis;
+    }
+
+    public String filmToBase() {
+        String s=new String();
+
+        s=s+this.titre+"/-/";
+        s=s+this.annee+"/-/";
+        s=s+this.realisateur+"/-/";
+        s=s+this.duree+"/-/";
+        s=s+this.note+"/-/";
+        s=s+this.image+"/-/";
+        s=s+this.synopsis + System.getProperty("line.separator");
+
+        return s;
     }
 
     public String filmNonNoteToBase() {
@@ -79,7 +93,7 @@ public class Films {
         s=s+this.annee+"/-/";
         s=s+this.realisateur+"/-/";
         s=s+this.duree+"/-/";
-        s=s+this.note+"/-/";
+        s=s+"/-/";
         s=s+this.image+"/-/";
         s=s+this.synopsis + System.getProperty("line.separator");
 
@@ -97,5 +111,10 @@ public class Films {
             s += "Resume : <br/>" + this.synopsis + "<br/></html>";
 
         return s;
+    }
+
+    public void setNote(int note){
+        this.note = note;
+        this.estNote = true;
     }
 }

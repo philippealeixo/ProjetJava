@@ -20,15 +20,15 @@ public class Vue extends JPanel {
     public static final String PASNOTE = "non noter";
 
 
-    String[] optionTrier = { "Trie par note", "Trie par annee", "Trie par titre"}; // définition des options de la liste déroulante
-    JComboBox trier = new JComboBox(optionTrier); // Creation de la liste déroulante
+    String[] optionTrier = { "Trie par note", "Trie par annee", "Trie par titre"}; // dï¿½finition des options de la liste dï¿½roulante
+    JComboBox trier = new JComboBox(optionTrier); // Creation de la liste dï¿½roulante
     //trier.setSelectedIndex(0);
 
 
     JPanel global; // Panneau general
     JPanel menu; //Panneau menu
     JPanel gauche;// Panneau de gauche
-    JPanel boutons; // JPabel composé de Bouton
+    JPanel boutons; // JPabel composï¿½ de Bouton
     JPanel droite;// Panneau de droite
 
     JLabel titreD;
@@ -139,17 +139,20 @@ public class Vue extends JPanel {
         liste.addListSelectionListener(c);
         ajouter.addActionListener(c);
         trier.addActionListener(c);
+        noter.addActionListener(c);
        // supprimer.addActionListener(c);
 
         all.addActionListener(c);
         note.addActionListener(c);
         pasNote.addActionListener(c);
 
+
+
     }
 
     public void maj() {
-	//information.setText(gestion.getInfosHTML());
-
+        liste.setSelectedIndex(liste.getAnchorSelectionIndex());
+	    //information.setText(gestion.getInfosHTML());
         information.setIcon(new ImageIcon(gestion.getImage(liste.getSelectedIndex())));
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
 }
@@ -192,7 +195,6 @@ public class Vue extends JPanel {
         pasNote.setSelected(true);
         System.out.print("test PAS NOTE");
     }
-
 
     public int getIndex() {
 

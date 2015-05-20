@@ -3,7 +3,7 @@ package Controleur;
 import Vue.*;
 
 import java.awt.event.*;
-import java.io.File;
+import java.io.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -64,8 +64,10 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 		}
 		if (a.getActionCommand().equals(Vue.NOTER)){
 			Object[] notes = {0,1,2,3,4,5};
-			int result = Integer.parseInt((String) JOptionPane.showInputDialog(null, "Veuillez noter le film\n", "NOTER FILM", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3));
-			System.out.println(result);
+			int result = (int) JOptionPane.showInputDialog(null, "Veuillez noter le film\n", "NOTER FILM", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), notes, 3);
+			g.setNote(v.getIndex(), result);
+			g.ajoutDansBase("txt/oeuvres.txt");
+			v.majJList();
 		}
 
 	}
