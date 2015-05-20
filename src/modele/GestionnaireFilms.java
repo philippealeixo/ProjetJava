@@ -110,7 +110,7 @@ public class GestionnaireFilms {
      * Fonction qui trie les listes de film par nom
      */
     public void sortByName() {
-        Collections.sort(this.film, Films.compareByNom());
+        Collections.sort(this.film, Films.compareByTitre());
     }
 
     /**
