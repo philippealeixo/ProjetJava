@@ -20,7 +20,7 @@ public class GestionnaireFilms {
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Fichier non trouv�");
+            System.out.println("Fichier non trouve");
         } catch (IOException e) {
             System.out.println("Lecture du fichier impossible");
         }
@@ -104,22 +104,62 @@ public class GestionnaireFilms {
     public void setNote(int index, int note){
         film.get(index).setNote(note);
     }
-/*
-    //main de test uniquement
-    public static void main(String[] args) {
-        GestionnaireFilms g = new GestionnaireFilms("txt/oeuvres.txt");
 
-        for (Films f : g.getFilm()) {
-            System.out.println(f);
+    public void listAll(){
+        film = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("txt/oeuvres.txt"));
+            String ligne; //lecture ligne par ligne
+            while ((ligne = reader.readLine()) != null) {
+                film.add(creerFilms(ligne));
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Fichier non trouve");
+        } catch (IOException e) {
+            System.out.println("Lecture du fichier impossible");
         }
     }
 
+    public void listNote(){
+        film = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("txt/oeuvres.txt"));
+            String ligne; //lecture ligne par ligne
+            while ((ligne = reader.readLine()) != null) {
+                String[] fichier = ligne.split("/-/");
+                if (fichier[4].equals("-1")) {
+                    //ne rien faire
+                }
+                else
+                    film.add(new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), Integer.parseInt(fichier[4]), new File(fichier[5]), fichier[6]));
 
-        @Override
-        public int compareTo(Films arg0) {
-            return titre.compareTo(arg0.titre);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Fichier non trouve");
+        } catch (IOException e) {
+            System.out.println("Lecture du fichier impossible");
         }
-*/
+    }
 
-
+    public void listNonNote(){
+        film = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("txt/oeuvres.txt"));
+            String ligne; //lecture ligne par ligne
+            while ((ligne = reader.readLine()) != null) {
+                String[] fichier = ligne.split("/-/");
+                if (fichier[4].equals("-1")) {
+                    film.add(new Films(fichier[0], fichier[1], fichier[2], Integer.parseInt(fichier[3]), new File(fichier[5]), fichier[6]));
+                }
+                else{/*ne rien faire*/}
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Fichier non trouve");
+        } catch (IOException e) {
+            System.out.println("Lecture du fichier impossible");
+        }
+    }
 }

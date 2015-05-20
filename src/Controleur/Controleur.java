@@ -30,6 +30,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 	public void valueChanged(ListSelectionEvent e) {
 		v.maj();
 		v.majButton();
+
 	}
 
 
@@ -50,13 +51,15 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 		}
 		if(a.getActionCommand().equals(Vue.ALL)){
 			v.selectAll();
-			System.out.println("trrtt");
+			v.majJList();
 		}
 		if(a.getActionCommand().equals(Vue.PASNOTE)){
 			v.selectPasNote();
+			v.majJList();
 		}
 		if (a.getActionCommand().equals(Vue.NOTE)){
 			v.selectNote();
+			v.majJList();
 		}
 		if (a.getActionCommand().equals(Vue.NOTER)){
 			Object[] notes = {0,1,2,3,4,5};

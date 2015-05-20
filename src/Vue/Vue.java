@@ -133,8 +133,6 @@ public class Vue extends JPanel {
     }
 
 
-
-
     public void setControler(Controleur c) {
         liste.addListSelectionListener(c);
         ajouter.addActionListener(c);
@@ -152,7 +150,6 @@ public class Vue extends JPanel {
 
     public void maj() {
         liste.setSelectedIndex(liste.getAnchorSelectionIndex());
-	    //information.setText(gestion.getInfosHTML());
         information.setIcon(new ImageIcon(gestion.getImage(liste.getSelectedIndex())));
         information.setText(gestion.getInfosHTML(liste.getSelectedIndex()));
 }
@@ -178,7 +175,7 @@ public class Vue extends JPanel {
             pasNote.setSelected(false);
             note.setSelected(false);
             all.setSelected(true);
-            System.out.print("test ALL");
+            gestion.listAll();
         }
     }
 
@@ -186,14 +183,14 @@ public class Vue extends JPanel {
         pasNote.setSelected(false);
         all.setSelected(false);
         note.setSelected(true);
-        System.out.print("test NOTE");
+        gestion.listNote();
     }
 
     public void selectPasNote(){
         all.setSelected(false);
         note.setSelected(false);
         pasNote.setSelected(true);
-        System.out.print("test PAS NOTE");
+        gestion.listNonNote();
     }
 
     public int getIndex() {
