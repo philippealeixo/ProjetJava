@@ -4,6 +4,7 @@ import Controleur.Controleur;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 
 public class VueAjout extends JDialog{
 
@@ -17,6 +18,7 @@ public class VueAjout extends JDialog{
     private JComboBox<String> choixAnnee;
     private JComboBox<String> choixNote;
     private JButton valider;
+    private JButton choisir;
     private boolean vTitre = false, vAnnee = false, vRealisateur = false, vDuree = false, vImage = false, vSynopsis = false, vNote = false;
 
 
@@ -352,6 +354,10 @@ public class VueAjout extends JDialog{
             this.vNote=false;
             this.infoNote.setText(erreur);
         }
+    }
+
+    public void setFile(File file){
+        zoneImage.setText(file.getName());
     }
 
     public String getZoneRealisateur() {

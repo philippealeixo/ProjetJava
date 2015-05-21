@@ -1,6 +1,7 @@
 package Vue;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -131,6 +132,8 @@ public class Vue extends JPanel {
         supprimer.setEnabled(false);
         ajouter.setActionCommand("ajouter");
         noter.setEnabled(false);
+
+        trier.setActionCommand("tri");
     }
 
 
@@ -171,21 +174,12 @@ public class Vue extends JPanel {
             liste.setSelectedIndex(liste.getLastVisibleIndex());
     }
 
-    public void majJListTri() {
-        ArrayList<Films> listeFilms = gestion.getFilm();
-        String[] tab = new String[listeFilms.size()];
-        for (int i=0; i<listeFilms.size(); i++) {
-            tab[i] = listeFilms.get(i).getTitre();
-        }
-        liste.setListData(tab);
-        if (liste.getAnchorSelectionIndex() <= liste.getLastVisibleIndex())
-            liste.setSelectedIndex(liste.getAnchorSelectionIndex());
-        else
-            liste.setSelectedIndex(liste.getLastVisibleIndex());
-    }
-
     public void majButton(){
-        noter.setEnabled(true);
+        if (note.isSelected() || pasNote.isSelected()){
+            noter.setEnabled(false);
+        }
+        else
+            noter.setEnabled(true);
         supprimer.setEnabled(true);
 
     }

@@ -32,7 +32,6 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 	public void valueChanged(ListSelectionEvent e) {
 		v.maj();
 		v.majButton();
-
 	}
 
 
@@ -73,14 +72,12 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 		if (a.getActionCommand().equals("tri")) { // dans le cas ou on utilise la JComboBox de tri
 			if (v.getValueSelectedTri().equals("Trie par titre")) {
 				g.sortByName();
-				v.majJListTri(); // mettre a jour la liste de l'onglet courant
 			} else if (v.getValueSelectedTri().equals("Trie par annee")) {
 				g.sortByYear();
-				v.majJListTri(); // mettre a jour la liste de l'onglet courant
 			} else if (v.getValueSelectedTri().equals("Trie par note")) { // option disponible seulement dans l'onglet des films notes
 				g.sortByNote();
-				v.majJListTri(); // mettre a jour la liste de l'onglet courant
 			}
+			v.majJList(); // mettre a jour la liste de l'onglet courant
 		}
 		
 		if(a.getActionCommand().equals(VueAjout.CHOISIRATION)){ //Si on clique sur ajouter une image
@@ -90,6 +87,7 @@ public class Controleur implements ListSelectionListener, ActionListener, FocusL
 	        
 	        if (ret == JFileChooser.APPROVE_OPTION) {	// On ouvre la box parcourir
 	        	file = fileopen.getSelectedFile(); // On recupere le lien choisit dans file
+				vueAjout.setFile(file);
 	        }
 			
 		}

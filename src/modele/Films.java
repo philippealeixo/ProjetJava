@@ -1,7 +1,10 @@
 package modele;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
 
 /**
  * Created by Philippe on 13/05/2015.
@@ -151,7 +154,21 @@ public class Films {
         return new Comparator<Films>() {
             @Override
             public int compare(Films f1, Films f2) {
-                return f1.annee.compareTo(f2.annee);
+                int resultatSave = 0;
+                try{
+                    SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+                    String dateInString1 = f1.annee;
+                    String dateInString2 = f2.annee;
+
+                    Date date1 = date.parse(dateInString1);
+                    Date date2 = date.parse(dateInString2);
+
+                    resultatSave = date2.compareTo(date1);
+                }
+                catch (ParseException e){
+                    e.printStackTrace();;
+                }
+                return resultatSave;
             }
         };
     }
